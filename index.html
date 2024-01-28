@@ -26,6 +26,15 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
+
+        <h3>Debug</h3>
+        <p>Valor MVA</p>
+        <p id="mva-debug-day"></p>
+        <p id="mva-debug-month"></p>
+        <p id="mva-debug-year"></p>
+        <p>------</p>
+        <p id="mva-debug-value"></p>
+        <p>----------------------------------------</p>
     </form>
 
     <div class="row">
@@ -78,6 +87,26 @@
         var _year2First = "";
         var _year2End = "";
 
+        const _DOB = {
+                "raw":"",
+                "day":"",
+                "daySplit":[],
+                "month":"",
+                "monthSplit":[],
+                "year":"",
+                "yearSplit":[],
+                "year1":"",
+                "year2":"",
+                "year3":"",
+                "year4":"",
+                "mva":"",
+                "ilka":"",
+
+
+            };
+
+        
+
         const interno = document.getElementById("interno");
         if(interno){
             interno.innerText = " testando" 
@@ -118,18 +147,48 @@
         }
         
         function getDateOfBirth(){
+
+           
+
             const dobRaw = document.getElementById("data-nasc");
             if(dobRaw){
-                _dobRaw = new Date(dobRaw.value);
-                _day = _dobRaw.getDay().toString();
-                _month = (_dobRaw.getMonth() + 1).toString();
+
+                _DOB.raw = new Date(dobRaw.value);
+                _DOB.day = _DOB.raw.getDate().toString();
+                _DOB.month = (_DOB.raw.getMonth() + 1).toString();
+                _DOB.year = _DOB.raw.getFullYear().toString();
+
+                _DOB.year1 =  parseInt(_DOB.year.toString().substring(0,1));
+                _DOB.year2 =  parseInt(_DOB.year.toString().substring(1,2));
+                _DOB.year3 =  parseInt(_DOB.year.toString().substring(2,3));
+                _DOB.year4 =  parseInt(_DOB.year.toString().substring(3,4));
+
+               // _dobRaw = new Date(dobRaw.value);
+                //_day = _dobRaw.getDay().toString();
+                /* _month = (_dobRaw.getMonth() + 1).toString();
                 _year = _dobRaw.getFullYear().toString();
                 _year2First =  _year.toString().substring(0,2);
-                _year2End =  _year.toString().substring(2);
+                _year2End =  _year.toString().substring(2); */
+
+                if(_DOB.day >= 10){
+                    _DOB.daySplit = _DOB.day.toString().split('');
+
+                }
+
+                if(_DOB.month >= 10){
+                    _DOB.monthSplit = _DOB.month.toString().split('');
+                }
+
+                if(_DOB.year){
+                    _DOB.yearSplit = _DOB.year.toString().split('');
+                }
+
+
+
+                
             }
 
-            
-
+            return _DOB;
 
         }
 
@@ -141,7 +200,47 @@
 
         }
 
-        function getMVA(){
+        function getCorrectValueForMVA(value){
+            let newValue = 0;
+            if(value >= 23){
+                const splitNums = value.toString().split(''); 
+                newValue = parseInt(splitNums[0]) + parseInt(splitNums[1]);
+            }else{
+                newValue = value;
+            }
+
+            return newValue;
+        }
+
+        function getMVA(dob){
+            
+            let valueDay = getCorrectValueForMVA(dob.day);
+            let valueMonth = getCorrectValueForMVA(dob.month);
+
+            let valueYear = dob.year1 + dob.year2 + dob.year3 + dob.year4;
+            let newValueYear = getCorrectValueForMVA(valueYear);
+
+            if(dob.month < 10){
+                dob.monthSplit[0] = 0;
+                dob.monthSplit[1] = dob.month;
+            }
+
+
+            const matrix = [[0,0,parseInt(dob.daySplit[0]),parseInt(dob.daySplit[1])],
+                            [0,0,parseInt(dob.monthSplit[0]),parseInt(dob.monthSplit[1])],
+                            [parseInt(dob.yearSplit[0]),parseInt(dob.yearSplit[1]),parseInt(dob.yearSplit[2]),parseInt(dob.yearSplit[3])]];
+            
+
+
+            
+
+            document.getElementById("mva-debug-day").innerHTML = `Dia ${valueDay}`;
+            document.getElementById("mva-debug-month").innerHTML = `Mes ${valueMonth}`;
+            document.getElementById("mva-debug-year").innerHTML = `Ano ${valueYear}`;
+
+            document.getElementById("mva-debug-value").innerHTML = `Resultado ${valueMonth}`;
+
+
 
         }
 
@@ -155,11 +254,16 @@
         }
 
         function getArcane(num){
-            
+
         }
 
         $("form").submit(function(){
-            getDateOfBirth();
+            const dob = getDateOfBirth();
+
+            if(dob){
+                getMVA(dob);
+            }
+            
 
             event.preventDefault();
         });
