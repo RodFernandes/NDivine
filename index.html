@@ -82,18 +82,18 @@
 
         const _DOB = {
                 "raw":"",
-                "day":"",
+                "day":0,
                 "daySplit":[],
-                "month":"",
+                "month":0,
                 "monthSplit":[],
-                "year":"",
+                "year":0,
                 "yearSplit":[],
-                "year1":"",
-                "year2":"",
-                "year3":"",
-                "year4":"",
-                "mva":"",
-                "ilka":"",
+                "year1":0,
+                "year2":0,
+                "year3":0,
+                "year4":0,
+                "mva":0,
+                "ilka":0,
 
 
             };
@@ -117,10 +117,7 @@
             palavra.innerText = " testando4" 
         }
 
-        const ilka = document.getElementById("ilka");
-        if(ilka){
-            ilka.innerText = " testando5" 
-        }
+        
 
         const dinheiro = document.getElementById("dinheiro");
         if(dinheiro){
@@ -185,7 +182,7 @@
                 const splitNums = value.toString().split(''); 
                 newValue = parseInt(splitNums[0]) + parseInt(splitNums[1]);
             }else{
-                newValue = value;
+                newValue = parseInt(value);
             }
 
             return newValue;
@@ -223,13 +220,18 @@
                 mva.innerText = ` ${dob.mva}` 
             }
 
+            //ILKA
+            const sumIlka = valueYear + valueDay + valueMonth + dob.mva;
+
+
+            getILKA(sumIlka);
             
             //debug
             document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
             document.getElementById("mva-debug-month").innerHTML = `Valor Mes ${valueMonth}`;
             document.getElementById("mva-debug-year").innerHTML = `Valor Ano ${valueYear}`;
 
-            document.getElementById("mva-debug-value").innerHTML = `Resultado ${dob.mva}`;
+            document.getElementById("mva-debug-value").innerHTML = `Resultado ${sumIlka}`;
 
 
 
@@ -240,7 +242,13 @@
 
         }
 
-        function getILKA(){
+        function getILKA(sumIlka){
+
+            const ilka = document.getElementById("ilka");
+            if(ilka){
+                ilka.innerText = ` ${sumIlka}` 
+            }
+
 
         }
 
@@ -248,11 +256,18 @@
 
         }
 
+        function startProcess(dob){
+            getMVA(dob);
+
+
+        }
+
         $("form").submit(function(){
             const dob = getDateOfBirth();
 
             if(dob){
-                getMVA(dob);
+                startProcess(dob);
+                
             }
             
 
