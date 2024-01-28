@@ -19,10 +19,11 @@
 
     <form>
         
-            <div class="mb-3">
-                <label for="data-nasc" class="form-label">Data de Nascimento:</label>
-                <input type="text" name="data-nasc" id="data-nasc" required/> 
-            </div>
+        <div class="mb-3">
+            <label for="data-nasc" class="form-label">Data de Nascimento:</label>
+            <input type="date" name="data-nasc" id="data-nasc" /> 
+            <p>Date: <i id="date-raw"></i></p>
+        </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -70,6 +71,13 @@
 
     $(document).ready(function(){
 
+        var _dobRaw = "";
+        var _day = "";
+        var _month = "";
+        var _year = "";
+        var _year2First = "";
+        var _year2End = "";
+
         const interno = document.getElementById("interno");
         if(interno){
             interno.innerText = " testando" 
@@ -101,7 +109,7 @@
         }
 
 
-        function getNumDinheiro(){
+        function getNumFinancial(){
             
         }
 
@@ -109,8 +117,105 @@
 
         }
         
+        function getDateOfBirth(){
+            const dobRaw = document.getElementById("data-nasc");
+            if(dobRaw){
+                _dobRaw = new Date(dobRaw.value);
+                _day = _dobRaw.getDay().toString();
+                _month = (_dobRaw.getMonth() + 1).toString();
+                _year = _dobRaw.getFullYear().toString();
+                _year2First =  _year.toString().substring(0,2);
+                _year2End =  _year.toString().substring(2);
+            }
+
+            
+
+
+        }
+
+        function getInternal(){
+
+        }
+
+        function getExternal(){
+
+        }
+
+        function getMVA(){
+
+        }
+
+        function getWord(){
+            //Codigos da Vida - Palavra Chave
+
+        }
+
+        function getILKA(){
+
+        }
+
+        function getArcane(num){
+            
+        }
+
+        $("form").submit(function(){
+            getDateOfBirth();
+
+            event.preventDefault();
+        });
+        
 
     })
+
+    const codigosDaVida = 
+        {
+            "1":"empreendedor",
+            "2":"intuitivo",
+            "3":"comunicador",
+            "6":"familiar",
+            "7":"conquistador",
+            "8":"justo",
+            "9":"paciente",
+
+
+        };
+
+   
+
+    const arcanes = [
+        {
+            "num": 0,
+            "name": "O Louco",
+            "url_carta": "",
+        },
+        {
+            "num": 4,
+            "name": "O Imperador",
+            "url_carta": "img/cards/o-imperador",
+        },
+        {
+            "num": 8,
+            "name": "A Força",
+            "url_carta": "",
+        },
+        {
+            "num": 10,
+            "name": "A Roda da Fortuna",
+            "url_carta": "",
+        },
+        {
+            "num": 16,
+            "name": "A Torre",
+            "url_carta": "",
+        },
+        {
+            "num": 17,
+            "name": "A Estrela",
+            "url_carta": "",
+        },
+
+    ];
+  
 
 </script>
 </html>
