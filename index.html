@@ -221,7 +221,7 @@
             const arcane = getArcane(dob.mva);
 
             if(mvaElem){
-                mva.innerText = ` ${dob.mva} - ${arcane.name}` 
+                mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}` 
             }
 
 
