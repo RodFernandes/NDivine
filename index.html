@@ -216,9 +216,14 @@
             dob.mva = getCorrectValueForMVA(sumOfSplittedDate);
             
             const mvaElem = document.getElementById("mva");
+           
+            // Arcane
+            const arcane = getArcane(dob.mva);
+
             if(mvaElem){
-                mva.innerText = ` ${dob.mva}` 
+                mva.innerText = ` ${dob.mva} - ${arcane.name}` 
             }
+
 
             //ILKA
             const sumIlka = valueYear + valueDay + valueMonth + dob.mva;
@@ -250,14 +255,19 @@
             }
 
 
+
+
         }
 
-        function getArcane(num){
+        function getArcane(number){
+            const arcane = arcanes.find(({num}) => num === number);
+            return arcane;
 
         }
 
         function startProcess(dob){
             getMVA(dob);
+           
 
 
         }
@@ -306,6 +316,11 @@
         {
             "num": 8,
             "name": "A Força",
+            "url_carta": "",
+        },
+        {
+            "num": 9,
+            "name": "O Eremita",
             "url_carta": "",
         },
         {
