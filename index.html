@@ -80,13 +80,6 @@
 
     $(document).ready(function(){
 
-        var _dobRaw = "";
-        var _day = "";
-        var _month = "";
-        var _year = "";
-        var _year2First = "";
-        var _year2End = "";
-
         const _DOB = {
                 "raw":"",
                 "day":"",
@@ -117,10 +110,7 @@
             externo.innerText = " testando2" 
         }
 
-        const mva = document.getElementById("mva");
-        if(mva){
-            mva.innerText = " testando3" 
-        }
+       
 
         const palavra = document.getElementById("palavra");
         if(palavra){
@@ -163,16 +153,8 @@
                 _DOB.year3 =  parseInt(_DOB.year.toString().substring(2,3));
                 _DOB.year4 =  parseInt(_DOB.year.toString().substring(3,4));
 
-               // _dobRaw = new Date(dobRaw.value);
-                //_day = _dobRaw.getDay().toString();
-                /* _month = (_dobRaw.getMonth() + 1).toString();
-                _year = _dobRaw.getFullYear().toString();
-                _year2First =  _year.toString().substring(0,2);
-                _year2End =  _year.toString().substring(2); */
-
                 if(_DOB.day >= 10){
                     _DOB.daySplit = _DOB.day.toString().split('');
-
                 }
 
                 if(_DOB.month >= 10){
@@ -182,9 +164,6 @@
                 if(_DOB.year){
                     _DOB.yearSplit = _DOB.year.toString().split('');
                 }
-
-
-
                 
             }
 
@@ -220,25 +199,37 @@
             let valueYear = dob.year1 + dob.year2 + dob.year3 + dob.year4;
             let newValueYear = getCorrectValueForMVA(valueYear);
 
+            if(dob.day < 10){
+                dob.daySplit[0] = 0;
+                dob.daySplit[1] = dob.day;
+            }
+
             if(dob.month < 10){
                 dob.monthSplit[0] = 0;
                 dob.monthSplit[1] = dob.month;
             }
 
+            const col4 = parseInt(dob.daySplit[1]) + parseInt(dob.monthSplit[1]) + parseInt(dob.yearSplit[3]);
+            const col3 = parseInt(dob.daySplit[0]) + parseInt(dob.monthSplit[0]) + parseInt(dob.yearSplit[2]);
+            const col2 = parseInt(dob.yearSplit[1]);
+            const col1 = parseInt(dob.yearSplit[0]);
 
-            const matrix = [[0,0,parseInt(dob.daySplit[0]),parseInt(dob.daySplit[1])],
-                            [0,0,parseInt(dob.monthSplit[0]),parseInt(dob.monthSplit[1])],
-                            [parseInt(dob.yearSplit[0]),parseInt(dob.yearSplit[1]),parseInt(dob.yearSplit[2]),parseInt(dob.yearSplit[3])]];
+            const sumOfSplittedDate = col1 + col2 + col3 + col4;
+
+            dob.mva = getCorrectValueForMVA(sumOfSplittedDate);
             
-
+            const mvaElem = document.getElementById("mva");
+            if(mvaElem){
+                mva.innerText = ` ${dob.mva}` 
+            }
 
             
+            //debug
+            document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
+            document.getElementById("mva-debug-month").innerHTML = `Valor Mes ${valueMonth}`;
+            document.getElementById("mva-debug-year").innerHTML = `Valor Ano ${valueYear}`;
 
-            document.getElementById("mva-debug-day").innerHTML = `Dia ${valueDay}`;
-            document.getElementById("mva-debug-month").innerHTML = `Mes ${valueMonth}`;
-            document.getElementById("mva-debug-year").innerHTML = `Ano ${valueYear}`;
-
-            document.getElementById("mva-debug-value").innerHTML = `Resultado ${valueMonth}`;
+            document.getElementById("mva-debug-value").innerHTML = `Resultado ${dob.mva}`;
 
 
 
