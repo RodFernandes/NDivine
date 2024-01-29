@@ -103,27 +103,14 @@
         });
         
 
-        const interno = document.getElementById("interno");
-        if(interno){
-            interno.innerText = " testando" 
-        }
-
-        const externo = document.getElementById("externo");
-        if(externo){
-            externo.innerText = " testando2" 
-        }
-
-        const palavra = document.getElementById("palavra");
-        if(palavra){
-            palavra.innerText = " testando4" 
-        }
+      
 
         const dinheiro = document.getElementById("dinheiro");
         if(dinheiro){
             dinheiro.innerText = " testando6" 
         }
 
-        function getNumFinancial(){
+        function getNumFinancialLuck(){
             
         }
 
@@ -245,10 +232,7 @@
 
         }
 
-        function getWord(){
-            //Codigos da Vida - Palavra Chave
-
-        }
+       
 
         function getILKA(sumIlka){
 
@@ -263,8 +247,38 @@
         }
 
         function getArcane(number){
-            const arcane = arcanes.find(({num}) => num === number);
+            const arcane = arcanes.find(({num}) => num === parseInt(number));
             return arcane;
+
+        }
+
+        function getLifeCode(number){
+            const lifeCode = codigosDaVida.find(({num}) => num === parseInt(number));
+            return lifeCode;
+        }
+
+        function showLifeCode(){
+            const lifeCodeElem = document.getElementById("palavra");
+            if(lifeCodeElem){
+                const lifeCode = getLifeCode(_DOB.mva);
+                lifeCodeElem.innerText = ` ${lifeCode.name}`;
+            }
+        }
+
+        function getInternalNum(){
+            const interno = document.getElementById("interno");
+            if(interno){
+                const arcane = getArcane(_DOB.day);
+                interno.innerText = ` ${_DOB.day} - ${arcane.name}`;
+            }
+        }
+
+        function getExternalNum(){
+            const externo = document.getElementById("externo");
+            if(externo){
+                const arcane = getArcane(_DOB.month);
+                externo.innerText = ` ${_DOB.month} - ${arcane.name}`;
+            }
 
         }
 
@@ -276,8 +290,10 @@
                return false;
             }
 
+            getInternalNum();
+            getExternalNum();
             getMVA(dob);
-           
+            showLifeCode();
 
 
         }
@@ -293,17 +309,98 @@
     })
 
     const codigosDaVida = 
-        {
-            "1":"empreendedor",
-            "2":"intuitivo",
-            "3":"comunicador",
-            "6":"familiar",
-            "7":"conquistador",
-            "8":"justo",
-            "9":"paciente",
-
-
-        };
+        [
+            {
+                "num":1,
+                "name":"empreendedor"
+            },
+            {
+                "num":2,
+                "name":"intuitivo"
+            },
+            {
+                "num":3,
+                "name":"comunicador"
+            },
+            {
+                "num":4,
+                "name":"empreendedor"
+            },
+            {
+                "num":5,
+                "name":"empreendedor"
+            },
+            {
+                "num":6,
+                "name":"familiar"
+            },
+            {
+                "num":7,
+                "name":"conquistador"
+            },
+            {
+                "num":8,
+                "name:":"justo"
+            },
+            {
+                "num":9,
+                "name":"paciente"
+            },
+            {
+                "num":10,
+                "name":""
+            },
+            {
+                "num":11,
+                "name":""
+            },
+            {
+                "num":12,
+                "name":""
+            },
+            {
+                "num":13,
+                "name":""
+            },
+            {
+                "num":14,
+                "name":""
+            },
+            {
+                "num":15,
+                "name":""
+            },
+            {
+                "num":16,
+                "name":""
+            },
+            {
+                "num":17,
+                "name":""
+            },
+            {
+                "num":18,
+                "name":""
+            },
+            {
+                "num":19,
+                "name":""
+            },
+            {
+                "num":20,
+                "name":""
+            },
+            {
+                "num":21,
+                "name":""
+            },
+            {
+                "num":22,
+                "name":""
+            },
+           
+           
+        ];
 
    
 
@@ -314,9 +411,39 @@
             "url_carta": "",
         },
         {
+            "num": 1,
+            "name": "O Mago",
+            "url_carta": "",
+        },
+        {
+            "num": 2,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 3,
+            "name": "",
+            "url_carta": "",
+        },
+        {
             "num": 4,
             "name": "O Imperador",
             "url_carta": "img/cards/o-imperador",
+        },
+        {
+            "num": 5,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 6,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 7,
+            "name": "",
+            "url_carta": "",
         },
         {
             "num": 8,
@@ -334,6 +461,31 @@
             "url_carta": "",
         },
         {
+            "num": 11,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 12,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 13,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 14,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 15,
+            "name": "",
+            "url_carta": "",
+        },
+        {
             "num": 16,
             "name": "A Torre",
             "url_carta": "",
@@ -343,7 +495,32 @@
             "name": "A Estrela",
             "url_carta": "",
         },
-
+        {
+            "num": 18,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 19,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 20,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 21,
+            "name": "",
+            "url_carta": "",
+        },
+        {
+            "num": 22,
+            "name": "",
+            "url_carta": "",
+        },
+        
     ];
   
 
