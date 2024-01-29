@@ -7,7 +7,6 @@
     <title>Numerologia Divina</title>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
@@ -21,20 +20,20 @@
         
         <div class="mb-3">
             <label for="data-nasc" class="form-label">Data de Nascimento:</label>
-            <input type="date" name="data-nasc" id="data-nasc" /> 
-            <p>Date: <i id="date-raw"></i></p>
+            <input type="tel" name="data-nasc" id="data-nasc" placeholder="DD/MM/AAAA" maxlength="10" size="10" required/> 
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
-
+<!-- 
         <h3>Debug</h3>
         <p>Valor MVA</p>
         <p id="mva-debug-day"></p>
         <p id="mva-debug-month"></p>
         <p id="mva-debug-year"></p>
         <p>------</p>
-        <p id="mva-debug-value"></p>
+        <p id="mva-debug-value"></p> -->
         <p>----------------------------------------</p>
+
     </form>
 
     <div class="row">
@@ -63,7 +62,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Idade da liberacao do Karma acumulado:</strong><i id="ilka"></i></p> 
+            <p><strong>ILKA:</strong><i id="ilka"></i></p> 
         </div>
     </div>
 
@@ -81,23 +80,27 @@
     $(document).ready(function(){
 
         const _DOB = {
-                "raw":"",
-                "day":0,
-                "daySplit":[],
-                "month":0,
-                "monthSplit":[],
-                "year":0,
-                "yearSplit":[],
-                "year1":0,
-                "year2":0,
-                "year3":0,
-                "year4":0,
-                "mva":0,
-                "ilka":0,
+            "raw":"",
+            "day":0,
+            "daySplit":[],
+            "month":0,
+            "monthSplit":[],
+            "year":0,
+            "yearSplit":[],
+            "year1":0,
+            "year2":0,
+            "year3":0,
+            "year4":0,
+            "mva":0,
+            "ilka":0,
+            "dob_elem": document.getElementById("data-nasc"),
 
 
-            };
+        };
 
+        _DOB.dob_elem.addEventListener("input", function(){
+            _DOB.dob_elem.value = _DOB.dob_elem.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'');;
+        });
         
 
         const interno = document.getElementById("interno");
@@ -110,37 +113,38 @@
             externo.innerText = " testando2" 
         }
 
-       
-
         const palavra = document.getElementById("palavra");
         if(palavra){
             palavra.innerText = " testando4" 
         }
-
-        
 
         const dinheiro = document.getElementById("dinheiro");
         if(dinheiro){
             dinheiro.innerText = " testando6" 
         }
 
-
         function getNumFinancial(){
             
         }
 
-        function allowOnly4DigNum(){
+        function formatDateNumbers(value){
+
+            const [day, month, year] = value.split('/');
+            const date = `${year}-${month}-${day}`;
+
+            return date; 
 
         }
         
         function getDateOfBirth(){
 
-           
-
-            const dobRaw = document.getElementById("data-nasc");
+            //const dobRaw = document.getElementById("data-nasc");
+            const dobRaw = _DOB.dob_elem;
             if(dobRaw){
 
-                _DOB.raw = new Date(dobRaw.value);
+                const date = formatDateNumbers(dobRaw.value);
+
+                _DOB.raw = new Date(date);
                 _DOB.day = _DOB.raw.getDate().toString();
                 _DOB.month = (_DOB.raw.getMonth() + 1).toString();
                 _DOB.year = _DOB.raw.getFullYear().toString();
@@ -221,23 +225,22 @@
             const arcane = getArcane(dob.mva);
 
             if(mvaElem){
-                mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}` 
+                mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}`; 
             }
 
 
             //ILKA
             const sumIlka = valueYear + valueDay + valueMonth + dob.mva;
 
-
             getILKA(sumIlka);
             
             //debug
-            document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
+           /*  document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
             document.getElementById("mva-debug-month").innerHTML = `Valor Mes ${valueMonth}`;
             document.getElementById("mva-debug-year").innerHTML = `Valor Ano ${valueYear}`;
 
             document.getElementById("mva-debug-value").innerHTML = `Resultado ${sumIlka}`;
-
+ */
 
 
         }
@@ -265,7 +268,14 @@
 
         }
 
-        function startProcess(dob){
+        function startProcess(){
+
+            const dob = getDateOfBirth();
+
+            if(!dob){
+               return false;
+            }
+
             getMVA(dob);
            
 
@@ -273,14 +283,9 @@
         }
 
         $("form").submit(function(){
-            const dob = getDateOfBirth();
 
-            if(dob){
-                startProcess(dob);
-                
-            }
-            
-
+            startProcess();
+           
             event.preventDefault();
         });
         
