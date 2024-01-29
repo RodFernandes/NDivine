@@ -48,7 +48,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Missao de Vida (MVA):</strong><i id="mva"></i></p> 
+            <p><strong>MVA:</strong><i id="mva"></i></p> 
         </div>
     </div>
 
@@ -103,12 +103,21 @@
 
       
 
-        const dinheiro = document.getElementById("dinheiro");
-        if(dinheiro){
-            dinheiro.innerText = " testando6" 
-        }
 
         function getNumFinancialLuck(){
+        // 8
+
+        const dinheiro = document.getElementById("dinheiro");
+            if(dinheiro){
+
+                let val = _DOB.mva + 8;
+                if(val > 9){
+                    val = getCorrectValueFor(val, 10);
+                }    
+
+
+                dinheiro.innerText = ` ${val}`;
+            }
             
         }
 
@@ -157,17 +166,10 @@
 
         }
 
-        function getInternal(){
 
-        }
-
-        function getExternal(){
-
-        }
-
-        function getCorrectValueForMVA(value){
+        function getCorrectValueFor(value, majorIqual){
             let newValue = 0;
-            if(value >= 23){
+            if(value >= majorIqual){
                 const splitNums = value.toString().split(''); 
                 newValue = parseInt(splitNums[0]) + parseInt(splitNums[1]);
             }else{
@@ -179,11 +181,11 @@
 
         function getMVA(dob){
             
-            let valueDay = getCorrectValueForMVA(dob.day);
-            let valueMonth = getCorrectValueForMVA(dob.month);
+            let valueDay = getCorrectValueFor(dob.day,23);
+            let valueMonth = getCorrectValueFor(dob.month, 23);
 
             let valueYear = dob.year1 + dob.year2 + dob.year3 + dob.year4;
-            let newValueYear = getCorrectValueForMVA(valueYear);
+            let newValueYear = getCorrectValueFor(valueYear,23);
 
             if(dob.day < 10){
                 dob.daySplit[0] = 0;
@@ -202,7 +204,7 @@
 
             const sumOfSplittedDate = col1 + col2 + col3 + col4;
 
-            dob.mva = getCorrectValueForMVA(sumOfSplittedDate);
+            dob.mva = getCorrectValueFor(sumOfSplittedDate,23);
             
             const mvaElem = document.getElementById("mva");
            
@@ -238,9 +240,6 @@
             if(ilka){
                 ilka.innerText = ` ${sumIlka}` 
             }
-
-
-
 
         }
 
@@ -292,6 +291,7 @@
             getExternalNum();
             getMVA(dob);
             showLifeCode();
+            getNumFinancialLuck();
 
 
         }
