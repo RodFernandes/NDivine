@@ -5,6 +5,7 @@ class Numerology{
     #_DOB_week_day;
     #_DOB_month;
     #_DOB_year;
+    #_ARCANES;
 
     constructor(dob){
         //constructor
@@ -16,6 +17,8 @@ class Numerology{
             this.#_DOB_week_day = parseInt(this.#_DOB_raw.getDay());
             this.#_DOB_month = parseInt((this.#_DOB_raw.getMonth() + 1));
             this.#_DOB_year = parseInt(this.#_DOB_raw.getFullYear());
+
+            this.#_ARCANES = this.#getArcanes();
 
             //console.table(this.#_DOB_day,this.#_DOB_month,this.#_DOB_year, this.#WeekDay(this.#_DOB_week_day))
 
@@ -30,16 +33,19 @@ class Numerology{
 
     showInternal(){
         const internalElem = document.getElementById("interno");
-            if(internalElem){
-                const internal = this.#getInternal();
-                internalElem.innerText = ` ${internal}`;
-            }
+        if(internalElem){
+            const internal = this.#getInternal();
+            internalElem.innerText = ` ${internal}`;
+            this.showArcane(this.#_DOB_day, "interno-arcane");
+        }
     }
 
     showExternal(){
+        const month = this.#_DOB_month;
         const externo = document.getElementById("externo");
         if(externo){
-            externo.innerText = ` ${this.#_DOB_month}`;
+            externo.innerText = ` ${month}`;
+            this.showArcane(month, "externo-arcane");
         }
     }
 
@@ -102,7 +108,10 @@ class Numerology{
         const mvaElem = document.getElementById("mva");
 
         if(mvaElem){
+
             mvaElem.innerText = ` ${mva}`;
+            this.showArcane(mva, "mva-arcane");
+
         }
 
         return mva;
@@ -125,9 +134,9 @@ class Numerology{
         const sumIlka = this.#getIlka(mva);
 
         const ilka = document.getElementById("ilka");
-            if(ilka){
-                ilka.innerText = ` ${sumIlka}` 
-            }
+        if(ilka){
+            ilka.innerText = ` ${sumIlka}` 
+        }
 
     }
 
@@ -149,6 +158,36 @@ class Numerology{
             const result = this.#getNumMoney(mva);
             money.innerText = ` ${result}`;
         }
+
+    }
+
+    async #getArcanes(){
+        const requestURL = "src/arcanes.json";
+        const request = new Request(requestURL);
+
+        const headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        //headers.append("Access-Control-Allow-Origin", "*");
+        headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io");
+
+        const response = await fetch(request, {method:'POST', headers: headers});
+        const arcaneFile = await response.json();
+
+        //console.log(arcaneFile);
+
+        return arcaneFile;
+    }
+
+    showArcane(number, elemID){
+        //const arcane = arcanes.find(({num}) => num === parseInt(number) );
+       
+        this.#_ARCANES.then((a) => {
+            const elem = document.getElementById(elemID);
+            console.log(elemID);
+            if(elem && elem != '' && elem != 'undefined'){
+                elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
+            }
+        });
 
     }
 
@@ -178,7 +217,6 @@ class Numerology{
 
     }
 
-    
 
     #formatDateDDMMYYYToYYYMMDD(value){
 

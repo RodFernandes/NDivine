@@ -9,36 +9,43 @@
     {
         "num": 1,
         "name": "O Mago",
+        "word":"Empreendedor",
         "url_carta": ""
     },
     {
         "num": 2,
         "name": "",
+        "word":"",
         "url_carta": ""
     },
     {
         "num": 3,
         "name": "A Imperatriz",
+        "word":"",
         "url_carta": ""
     },
     {
         "num": 4,
         "name": "O Imperador",
+        "word":"",
         "url_carta": "img/cards/o-imperador"
     },
     {
         "num": 5,
         "name": "",
+        "word":"",
         "url_carta": ""
     },
     {
         "num": 6,
         "name": "",
+        "word":"",
         "url_carta": ""
     },
     {
         "num": 7,
         "name": "O Carro",
+        "word":"",
         "url_carta": ""
     },
     {
