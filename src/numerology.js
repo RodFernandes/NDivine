@@ -23,6 +23,26 @@ class Numerology{
 
     }
 
+    #getInternal(){
+        const internal = this.#splitNumbers(this.#_DOB_day,22);
+        return internal;
+    }
+
+    showInternal(){
+        const internalElem = document.getElementById("interno");
+            if(internalElem){
+                const internal = this.#getInternal();
+                internalElem.innerText = ` ${internal}`;
+            }
+    }
+
+    showExternal(){
+        const externo = document.getElementById("externo");
+        if(externo){
+            externo.innerText = ` ${this.#_DOB_month}`;
+        }
+    }
+
     #getMVA(){
 
         const day = this.#_DOB_day;

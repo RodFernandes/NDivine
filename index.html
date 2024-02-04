@@ -345,6 +345,8 @@
             }
 
             const numlogy = new Numerology(_DOB.dob_elem);
+            numlogy.showInternal();
+            numlogy.showExternal();
             const mva = numlogy.showMVA();
             numlogy.showIlka(mva);
             numlogy.showNumMoney(mva);
