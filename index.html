@@ -9,11 +9,41 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="src/numerology.js"></script>
 
 </head>
 
 <body>
-<br /> <br />
+
+    <br /> <br />
+
+   <!--  <div>
+        <picture>
+            <source 
+              type="image/avif"
+              sizes="100vw"
+              srcset="img/cards/back/back_card-1333.avif 1333w, 
+                img/cards/back/back_card-667.avif 667w, 
+                img/cards/back/back_card-445.avif 445w, 
+                img/cards/back/back_card-334.avif 334w, 
+                img/cards/back/back_card-267.avif 267w">
+            <img 
+              alt="Back of the card"
+              src="img/cards/back/back_card.jpeg" 
+              srcset="img/cards/back/back_card-1333.jpeg 1333w, 
+                img/cards/back/back_card-667.jpeg 667w, 
+                img/cards/back/back_card-445.jpeg 445w, 
+                img/cards/back/back_card-334.jpeg 334w, 
+                img/cards/back/back_card-267.jpeg 267w"
+              sizes="100vw"
+              loading="lazy"
+              decoding="async"
+              height="2000"
+              width="1333"
+              style="content-visibility: auto; max-width: 100%; height: auto;">
+          </picture>
+    </div> -->
+
     <form>
         
         <div class="mb-3">
@@ -36,19 +66,19 @@
 
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Interno:</strong><i id="interno"></i></p> 
+            <p><strong>Interno:</strong><i id="interno"></i><i id="interno-arcane"></i></p> 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            <p><strong>Externo:</strong><i id="externo"></i></p> 
+            <p><strong>Externo:</strong><i id="externo"><i id="externo-arcane"></i></p> 
         </div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            <p><strong>MVA:</strong><i id="mva"></i></p> 
+            <p><strong>MVA:</strong><i id="mva"><i id="mva-arcane"></i></p> 
         </div>
     </div>
 
@@ -77,6 +107,10 @@
 
     $(document).ready(function(){
 
+        
+
+        const arcanes =  getArcaneFile();
+
         const _DOB = {
             "raw":"",
             "day":0,
@@ -100,14 +134,9 @@
             _DOB.dob_elem.value = _DOB.dob_elem.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'');;
         });
         
-
-      
-
-
-        function getNumFinancialLuck(){
-        // 8
-
-        const dinheiro = document.getElementById("dinheiro");
+        function showNumFinancialLuck(){
+        
+            const dinheiro = document.getElementById("dinheiro");
             if(dinheiro){
 
                 let val = _DOB.mva + 8;
@@ -166,7 +195,6 @@
 
         }
 
-
         function getCorrectValueFor(value, majorIqual){
             let newValue = 0;
             if(value >= majorIqual){
@@ -209,17 +237,18 @@
             const mvaElem = document.getElementById("mva");
            
             // Arcane
-            const arcane = getArcane(dob.mva);
+           showArcane(dob.mva, "mva-arcane");
 
             if(mvaElem){
-                mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}`; 
+                //mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}`; 
+                mva.innerText = ` ${dob.mva}`;
             }
 
 
             //ILKA
             const sumIlka = valueYear + valueDay + valueMonth + dob.mva;
 
-            getILKA(sumIlka);
+            showILKA(sumIlka);
             
             //debug
            /*  document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
@@ -232,20 +261,12 @@
 
         }
 
-       
-
-        function getILKA(sumIlka){
+        function showILKA(sumIlka){
 
             const ilka = document.getElementById("ilka");
             if(ilka){
                 ilka.innerText = ` ${sumIlka}` 
             }
-
-        }
-
-        function getArcane(number){
-            const arcane = arcanes.find(({num}) => num === parseInt(number));
-            return arcane;
 
         }
 
@@ -258,24 +279,60 @@
             const lifeCodeElem = document.getElementById("palavra");
             if(lifeCodeElem){
                 const lifeCode = getLifeCode(_DOB.mva);
-                lifeCodeElem.innerText = ` ${lifeCode.name}`;
+                if(lifeCode && lifeCode.value != ''){
+                    lifeCodeElem.innerText = ` ${lifeCode.name}`;
+                }
+                
             }
         }
 
         function getInternalNum(){
             const interno = document.getElementById("interno");
             if(interno){
-                const arcane = getArcane(_DOB.day);
-                interno.innerText = ` ${_DOB.day} - ${arcane.name}`;
+                interno.innerText = ` ${_DOB.day}`;
+                showArcane(_DOB.day, "interno-arcane");
             }
         }
 
         function getExternalNum(){
             const externo = document.getElementById("externo");
             if(externo){
-                const arcane = getArcane(_DOB.month);
-                externo.innerText = ` ${_DOB.month} - ${arcane.name}`;
+                externo.innerText = ` ${_DOB.month}`;
+                showArcane(_DOB.month, "externo-arcane");
+                //console.log( showArcane(_DOB.month, "externo-arcane"));
             }
+
+        }
+
+        async function getArcaneFile(){
+            
+            const requestURL = "src/arcanes.json";
+            const request = new Request(requestURL);
+
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            //headers.append("Access-Control-Allow-Origin", "*");
+            headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io");
+
+
+            const response = await fetch(request, {method:'POST', headers: headers});
+            const arcaneFile = await response.json();
+            //console.log(arcaneFile);
+
+            return arcaneFile;
+        }
+
+        function showArcane(number, elemID){
+            //const arcane = arcanes.find(({num}) => num === parseInt(number) );
+
+            arcanes.then((a) => {
+                const elem = document.getElementById(elemID);
+                console.log(elemID);
+                if(elem){
+                    console.log(elem);
+                    elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
+                }
+            });
 
         }
 
@@ -287,12 +344,15 @@
                return false;
             }
 
-            getInternalNum();
-            getExternalNum();
-            getMVA(dob);
-            showLifeCode();
-            getNumFinancialLuck();
+            const numlogy = new Numerology(_DOB.dob_elem);
+            const mva = numlogy.showMVA();
+            numlogy.showIlka(mva);
 
+            // getInternalNum();
+            // getExternalNum();
+            // getMVA(dob);
+            // showLifeCode();
+            // showNumFinancialLuck();
 
         }
 
@@ -306,11 +366,23 @@
 
     })
 
+    const stones = [
+        {
+            "name":""
+        },
+    ];
+
+    const colours = [
+        {
+            "name":""
+        },
+    ];
+
     const codigosDaVida = 
         [
             {
                 "num":1,
-                "name":"empreendedor"
+                "name":""
             },
             {
                 "num":2,
@@ -394,7 +466,7 @@
             },
             {
                 "num":22,
-                "name":""
+                "name":"livre"
             },
            
            
@@ -402,7 +474,7 @@
 
    
 
-    const arcanes = [
+    /* const arcanes = [
         {
             "num": 0,
             "name": "O Louco",
@@ -515,11 +587,11 @@
         },
         {
             "num": 22,
-            "name": "",
+            "name": "O Louco",
             "url_carta": "",
         },
         
-    ];
+    ]; */
   
 
 </script>

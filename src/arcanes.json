@@ -1,0 +1,120 @@
+[
+    {
+        "num": 0,
+        "name": "O Louco",
+        "word":"",
+        "card_folder":"",
+        "url_carta": ""
+    },
+    {
+        "num": 1,
+        "name": "O Mago",
+        "url_carta": ""
+    },
+    {
+        "num": 2,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 3,
+        "name": "A Imperatriz",
+        "url_carta": ""
+    },
+    {
+        "num": 4,
+        "name": "O Imperador",
+        "url_carta": "img/cards/o-imperador"
+    },
+    {
+        "num": 5,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 6,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 7,
+        "name": "O Carro",
+        "url_carta": ""
+    },
+    {
+        "num": 8,
+        "name": "A Justiça",
+        "url_carta": ""
+    },
+    {
+        "num": 9,
+        "name": "O Eremita",
+        "url_carta": ""
+    },
+    {
+        "num": 10,
+        "name": "A Roda da Fortuna",
+        "url_carta": ""
+    },
+    {
+        "num": 11,
+        "name": "A Força",
+        "url_carta": ""
+    },
+    {
+        "num": 12,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 13,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 14,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 15,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 16,
+        "name": "A Torre",
+        "url_carta": ""
+    },
+    {
+        "num": 17,
+        "name": "A Estrela",
+        "url_carta": ""
+    },
+    {
+        "num": 18,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 19,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 20,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 21,
+        "name": "",
+        "url_carta": ""
+    },
+    {
+        "num": 22,
+        "name": "O Louco",
+        "url_carta": ""
+    }
+    
+]
