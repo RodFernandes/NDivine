@@ -93,6 +93,7 @@ class Numerology{
 
         const valueDays = this.#splitNumbers(this.#_DOB_day, 22);
         const valueMonths = this.#_DOB_month;
+        //Soma os digitos do ano se for maior que 22 quebra o resultado em 2 e soma. 
         const valueYears = this.#splitNumbers(this.#sumDigits(this.#_DOB_year), 22);
 
         return valueDays + valueMonths + valueYears + mva;
@@ -112,10 +113,23 @@ class Numerology{
 
     #getNumMoney(mva){
 
+        let val = parseInt(mva) + 8;
+        if(val > 9){
+            val = this.#splitNumbers(val, 9);
+        }    
+
+        return val;
+
     }
 
-    showNumMoney(){
-        
+    showNumMoney(mva){
+
+        const money = document.getElementById("dinheiro");
+        if(money){
+            const result = this.#getNumMoney(mva);
+            money.innerText = ` ${result}`;
+        }
+
     }
 
     #sumDigits(value){
