@@ -136,7 +136,12 @@ class Numerology{
     showMVAPic(mva){
         const elemt = document.getElementById("img-arcane-top");
         console.log(elemt);
+
         if(elemt && elemt != '' && elemt != 'undefined'){
+            
+            elemt.style.transform = "rotatey(" + 180 + "deg)";
+            elemt.style.transitionDuration = "0.8s"
+            elemt.style.transformStyle = "preserve-3d";
             elemt.src = `${this.#_ARCANES.find(a => a.num === parseInt(mva)).url_card}`;
         }
     }

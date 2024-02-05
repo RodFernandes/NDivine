@@ -66,3 +66,33 @@ img {
     height: auto;
  
 }
+
+/* .flip-card {
+    background-color: transparent;
+    -webkit-perspective: 1000;
+    -moz-perspective: 1000;
+    -o-perspective: 1000;
+    perspective: 1000;
+  }
+  
+  .flip-card-inner {
+   
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card-front, .flip-card-back {
+    
+    -webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+	backface-visibility: hidden;
+  }
+  
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  } */
