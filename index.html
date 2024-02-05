@@ -107,10 +107,6 @@
 
     $(document).ready(function(){
 
-        
-
-        const arcanes =  getArcaneFile();
-
         const _DOB = {
             "raw":"",
             "day":0,
@@ -119,37 +115,13 @@
             "monthSplit":[],
             "year":0,
             "yearSplit":[],
-            "year1":0,
-            "year2":0,
-            "year3":0,
-            "year4":0,
-            "mva":0,
-            "ilka":0,
             "dob_elem": document.getElementById("data-nasc"),
-
-
         };
 
         _DOB.dob_elem.addEventListener("input", function(){
             _DOB.dob_elem.value = _DOB.dob_elem.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d+)$/g,'$1/$2').replace(/[^\d\/]/g,'');;
         });
         
-        function showNumFinancialLuck(){
-        
-            const dinheiro = document.getElementById("dinheiro");
-            if(dinheiro){
-
-                let val = _DOB.mva + 8;
-                if(val > 9){
-                    val = getCorrectValueFor(val, 10);
-                }    
-
-
-                dinheiro.innerText = ` ${val}`;
-            }
-            
-        }
-
         function formatDateNumbers(value){
 
             const [day, month, year] = value.split('/');
@@ -195,146 +167,12 @@
 
         }
 
-        function getCorrectValueFor(value, majorIqual){
-            let newValue = 0;
-            if(value >= majorIqual){
-                const splitNums = value.toString().split(''); 
-                newValue = parseInt(splitNums[0]) + parseInt(splitNums[1]);
-            }else{
-                newValue = parseInt(value);
-            }
+        $("form").submit(function(){
 
-            return newValue;
-        }
-
-        function getMVA(dob){
-            
-            let valueDay = getCorrectValueFor(dob.day,23);
-            let valueMonth = getCorrectValueFor(dob.month, 23);
-
-            let valueYear = dob.year1 + dob.year2 + dob.year3 + dob.year4;
-            let newValueYear = getCorrectValueFor(valueYear,23);
-
-            if(dob.day < 10){
-                dob.daySplit[0] = 0;
-                dob.daySplit[1] = dob.day;
-            }
-
-            if(dob.month < 10){
-                dob.monthSplit[0] = 0;
-                dob.monthSplit[1] = dob.month;
-            }
-
-            const col4 = parseInt(dob.daySplit[1]) + parseInt(dob.monthSplit[1]) + parseInt(dob.yearSplit[3]);
-            const col3 = parseInt(dob.daySplit[0]) + parseInt(dob.monthSplit[0]) + parseInt(dob.yearSplit[2]);
-            const col2 = parseInt(dob.yearSplit[1]);
-            const col1 = parseInt(dob.yearSplit[0]);
-
-            const sumOfSplittedDate = col1 + col2 + col3 + col4;
-
-            dob.mva = getCorrectValueFor(sumOfSplittedDate,23);
-            
-            const mvaElem = document.getElementById("mva");
+            startProcess();
            
-            // Arcane
-           showArcane(dob.mva, "mva-arcane");
-
-            if(mvaElem){
-                //mva.innerText = ` ${dob.mva} - ${arcane ? arcane.name : ""}`; 
-                mva.innerText = ` ${dob.mva}`;
-            }
-
-
-            //ILKA
-            const sumIlka = valueYear + valueDay + valueMonth + dob.mva;
-
-            showILKA(sumIlka);
-            
-            //debug
-           /*  document.getElementById("mva-debug-day").innerHTML = `Valor Dia ${valueDay}`;
-            document.getElementById("mva-debug-month").innerHTML = `Valor Mes ${valueMonth}`;
-            document.getElementById("mva-debug-year").innerHTML = `Valor Ano ${valueYear}`;
-
-            document.getElementById("mva-debug-value").innerHTML = `Resultado ${sumIlka}`;
- */
-
-
-        }
-
-        function showILKA(sumIlka){
-
-            const ilka = document.getElementById("ilka");
-            if(ilka){
-                ilka.innerText = ` ${sumIlka}` 
-            }
-
-        }
-
-        function getLifeCode(number){
-            const lifeCode = codigosDaVida.find(({num}) => num === parseInt(number));
-            return lifeCode;
-        }
-
-        function showLifeCode(){
-            const lifeCodeElem = document.getElementById("palavra");
-            if(lifeCodeElem){
-                const lifeCode = getLifeCode(_DOB.mva);
-                if(lifeCode && lifeCode.value != ''){
-                    lifeCodeElem.innerText = ` ${lifeCode.name}`;
-                }
-                
-            }
-        }
-
-        function getInternalNum(){
-            const interno = document.getElementById("interno");
-            if(interno){
-                interno.innerText = ` ${_DOB.day}`;
-                showArcane(_DOB.day, "interno-arcane");
-            }
-        }
-
-        function getExternalNum(){
-            const externo = document.getElementById("externo");
-            if(externo){
-                externo.innerText = ` ${_DOB.month}`;
-                showArcane(_DOB.month, "externo-arcane");
-                //console.log( showArcane(_DOB.month, "externo-arcane"));
-            }
-
-        }
-
-        async function getArcaneFile(){
-            
-            const requestURL = "src/arcanes.json";
-            const request = new Request(requestURL);
-
-            const headers = new Headers();
-            headers.append('Content-Type', 'application/json');
-            //headers.append("Access-Control-Allow-Origin", "*");
-            headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io");
-
-
-            const response = await fetch(request, {method:'POST', headers: headers});
-            const arcaneFile = await response.json();
-            //console.log(arcaneFile);
-
-            return arcaneFile;
-        }
-
-        function showArcane(number, elemID){
-            //const arcane = arcanes.find(({num}) => num === parseInt(number) );
-
-            arcanes.then((a) => {
-                const elem = document.getElementById(elemID);
-                console.log(elemID);
-                if(elem){
-                    console.log(elem);
-                    elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
-                }
-            });
-
-        }
+            event.preventDefault();
+        });
 
         function startProcess(){
 
@@ -345,258 +183,12 @@
             }
 
             const numlogy = new Numerology(_DOB.dob_elem);
-            numlogy.showInternal();
-            numlogy.showExternal();
-            const mva = numlogy.showMVA();
-            numlogy.showIlka(mva);
-            numlogy.showNumMoney(mva);
-            numlogy.showWord(mva);
-
-            // getInternalNum();
-            // getExternalNum();
-            // getMVA(dob);
-            // showLifeCode();
-            // showNumFinancialLuck();
+            numlogy.run();
 
         }
-
-        $("form").submit(function(){
-
-            startProcess();
-           
-            event.preventDefault();
-        });
         
 
     })
-
-    const stones = [
-        {
-            "name":""
-        },
-    ];
-
-    const colours = [
-        {
-            "name":""
-        },
-    ];
-
-    const codigosDaVida = 
-        [
-            {
-                "num":1,
-                "name":""
-            },
-            {
-                "num":2,
-                "name":"intuitivo"
-            },
-            {
-                "num":3,
-                "name":"comunicador"
-            },
-            {
-                "num":4,
-                "name":"empreendedor"
-            },
-            {
-                "num":5,
-                "name":""
-            },
-            {
-                "num":6,
-                "name":"familiar"
-            },
-            {
-                "num":7,
-                "name":"conquistador"
-            },
-            {
-                "num":8,
-                "name":"justo"
-            },
-            {
-                "num":9,
-                "name":"paciente"
-            },
-            {
-                "num":10,
-                "name":""
-            },
-            {
-                "num":11,
-                "name":""
-            },
-            {
-                "num":12,
-                "name":""
-            },
-            {
-                "num":13,
-                "name":""
-            },
-            {
-                "num":14,
-                "name":""
-            },
-            {
-                "num":15,
-                "name":""
-            },
-            {
-                "num":16,
-                "name":""
-            },
-            {
-                "num":17,
-                "name":""
-            },
-            {
-                "num":18,
-                "name":""
-            },
-            {
-                "num":19,
-                "name":""
-            },
-            {
-                "num":20,
-                "name":""
-            },
-            {
-                "num":21,
-                "name":""
-            },
-            {
-                "num":22,
-                "name":"livre"
-            },
-           
-           
-        ];
-
-   
-
-    /* const arcanes = [
-        {
-            "num": 0,
-            "name": "O Louco",
-            "url_carta": "",
-        },
-        {
-            "num": 1,
-            "name": "O Mago",
-            "url_carta": "",
-        },
-        {
-            "num": 2,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 3,
-            "name": "A Imperatriz",
-            "url_carta": "",
-        },
-        {
-            "num": 4,
-            "name": "O Imperador",
-            "url_carta": "img/cards/o-imperador",
-        },
-        {
-            "num": 5,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 6,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 7,
-            "name": "O Carro",
-            "url_carta": "",
-        },
-        {
-            "num": 8,
-            "name": "A Força",
-            "url_carta": "",
-        },
-        {
-            "num": 9,
-            "name": "O Eremita",
-            "url_carta": "",
-        },
-        {
-            "num": 10,
-            "name": "A Roda da Fortuna",
-            "url_carta": "",
-        },
-        {
-            "num": 11,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 12,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 13,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 14,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 15,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 16,
-            "name": "A Torre",
-            "url_carta": "",
-        },
-        {
-            "num": 17,
-            "name": "A Estrela",
-            "url_carta": "",
-        },
-        {
-            "num": 18,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 19,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 20,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 21,
-            "name": "",
-            "url_carta": "",
-        },
-        {
-            "num": 22,
-            "name": "O Louco",
-            "url_carta": "",
-        },
-        
-    ]; */
-  
 
 </script>
 </html>

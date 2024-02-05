@@ -27,6 +27,16 @@ class Numerology{
 
     }
 
+    run(){
+        
+            this.showExternal();
+            numlogy.showExternal();
+            const mva = numlogy.showMVA();
+            numlogy.showIlka(mva);
+            numlogy.showNumMoney(mva);
+            numlogy.showWord(mva);
+    }
+
     #getInternal(){
         const internal = this.#splitNumbers(this.#_DOB_day,22);
         return internal;
