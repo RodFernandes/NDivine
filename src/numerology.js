@@ -37,7 +37,7 @@ class Numerology{
         if(internalElem){
             const internal = this.#getInternal();
             internalElem.innerText = ` ${internal}`;
-            this.showArcane(this.#_DOB_day, "interno-arcane");
+            this.showArcane(internal, "interno-arcane");
         }
     }
 
@@ -92,9 +92,9 @@ class Numerology{
 
         const sumOfSplittedDate = col1 + col2 + col3 + col4;
 
-        //console.log(daySplit, monthSplit);
-        //console.table(col1,col2, col3, col4);
-        //console.log(sumOfSplittedDate);
+        console.log(daySplit, monthSplit);
+        console.table(col1,col2, col3, col4);
+        console.log(sumOfSplittedDate);
         
         const mva = this.#splitNumbers(sumOfSplittedDate,22);
 
