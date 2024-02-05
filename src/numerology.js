@@ -30,11 +30,11 @@ class Numerology{
     run(){
         
             this.showExternal();
-            numlogy.showExternal();
-            const mva = numlogy.showMVA();
-            numlogy.showIlka(mva);
-            numlogy.showNumMoney(mva);
-            numlogy.showWord(mva);
+            this.showExternal();
+            const mva = this.showMVA();
+            this.showIlka(mva);
+            this.showNumMoney(mva);
+            this.showWord(mva);
     }
 
     #getInternal(){
