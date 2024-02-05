@@ -173,7 +173,7 @@ class Numerology{
         //headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         //headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io/NDivine/");
 
-        const response = await fetch(request, {method:'POST', headers: headers});
+        const response = await fetch(request, {method:'POST', mode: "cors", headers: headers});
         const arcaneFile = await response.json();
 
         //console.log(arcaneFile);
