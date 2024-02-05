@@ -18,6 +18,7 @@ class Numerology{
             this.#_DOB_month = parseInt((this.#_DOB_raw.getMonth() + 1));
             this.#_DOB_year = parseInt(this.#_DOB_raw.getFullYear());
 
+            //this.#_ARCANES_Async = this.#getArcanesAsync();
             this.#_ARCANES = this.#getArcanes();
 
             //console.table(this.#_DOB_day,this.#_DOB_month,this.#_DOB_year, this.#WeekDay(this.#_DOB_week_day))
@@ -163,7 +164,7 @@ class Numerology{
 
     }
 
-    async #getArcanes(){
+    async #getArcanesAsync(){
         const requestURL = "src/arcanes.json";
         const request = new Request(requestURL);
 
@@ -181,7 +182,7 @@ class Numerology{
         return arcaneFile;
     }
 
-    showArcane(number, elemID){
+    showArcaneAsync(number, elemID){
         //const arcane = arcanes.find(({num}) => num === parseInt(number) );
        
         this.#_ARCANES.then((a) => {
@@ -194,17 +195,27 @@ class Numerology{
 
     }
 
+    // showWordAsync(mva){
+
+    //     this.#_ARCANES.then((a) => {
+    //         const elem = document.getElementById("palavra");
+    //         console.log(elem);
+    //         if(elem && elem != '' && elem != 'undefined'){
+    //             elem.innerText = ` - ${a.find(a => a.num === parseInt(mva)).word}`;
+    //         }
+    //     });
+
+    // }
+
     showWord(mva){
-
-        this.#_ARCANES.then((a) => {
-            const elem = document.getElementById("palavra");
-            console.log(elem);
-            if(elem && elem != '' && elem != 'undefined'){
-                elem.innerText = ` - ${a.find(a => a.num === parseInt(mva)).word}`;
-            }
-        });
-
+        const elemt = document.getElementById("palavra");
+        console.log(elemt);
+        if(elemt && elemt != '' && elemt != 'undefined'){
+            elemt.innerText = ` - ${this.#_ARCANES.find(a => a.num === parseInt(mva)).word}`;
+        }
     }
+
+
 
     #sumDigits(value){
         let newValue = 0;
@@ -265,6 +276,161 @@ class Numerology{
 
         return result += resultEnd;
         
+    }
+
+    showArcane(number, elem){
+        const elemt = document.getElementById(elem);
+        console.log(elemt);
+        if(elemt && elemt != '' && elemt != 'undefined'){
+            elemt.innerText = ` - ${this.#_ARCANES.find(a => a.num === parseInt(number)).name}`;
+        }
+    }
+
+    #getArcanes(){
+
+        return  [
+            {
+                "num": 0,
+                "name": "O Louco",
+                "word":"Livre",
+                "card_folder":"",
+                "url_carta": ""
+            },
+            {
+                "num": 1,
+                "name": "O Mago",
+                "word":"Empreendedor",
+                "url_carta": ""
+            },
+            {
+                "num": 2,
+                "name": "A Sacerdotisa",
+                "word":"Intuitivo",
+                "url_carta": ""
+            },
+            {
+                "num": 3,
+                "name": "A Imperatriz",
+                "word":"Comunicador",
+                "url_carta": ""
+            },
+            {
+                "num": 4,
+                "name": "O Imperador",
+                "word":"Lider",
+                "url_carta": "img/cards/o-imperador"
+            },
+            {
+                "num": 5,
+                "name": "O Papa",
+                "word":"Religioso",
+                "url_carta": ""
+            },
+            {
+                "num": 6,
+                "name": "Os Enamorados",
+                "word":"Familiar",
+                "url_carta": ""
+            },
+            {
+                "num": 7,
+                "name": "O Carro",
+                "word":"Conquistador",
+                "url_carta": ""
+            },
+            {
+                "num": 8,
+                "name": "A Justiça",
+                "word":"Justo",
+                "url_carta": ""
+            },
+            {
+                "num": 9,
+                "name": "O Eremita",
+                "word":"Paciente",
+                "url_carta": ""
+            },
+            {
+                "num": 10,
+                "name": "A Roda da Fortuna",
+                "word":"Fiel",
+                "url_carta": ""
+            },
+            {
+                "num": 11,
+                "name": "A Força",
+                "word":"Inteligente",
+                "url_carta": ""
+            },
+            {
+                "num": 12,
+                "name": "O Enforcado",
+                "word":"Analista",
+                "url_carta": ""
+            },
+            {
+                "num": 13,
+                "name": "A Morte",
+                "word":"Certo",
+                "url_carta": ""
+            },
+            {
+                "num": 14,
+                "name": "A Temperança",
+                "word":"Equilibrado",
+                "url_carta": ""
+            },
+            {
+                "num": 15,
+                "name": "O Diabo",
+                "word":"Prazeroso",
+                "url_carta": ""
+            },
+            {
+                "num": 16,
+                "name": "A Torre",
+                "word":"Organizado",
+                "url_carta": ""
+            },
+            {
+                "num": 17,
+                "name": "A Estrela",
+                "word":"Positivo",
+                "url_carta": ""
+            },
+            {
+                "num": 18,
+                "name": "A Lua",
+                "word":"Místico",
+                "url_carta": ""
+            },
+            {
+                "num": 19,
+                "name": "O Sol",
+                "word":"Amoroso",
+                "url_carta": ""
+            },
+            {
+                "num": 20,
+                "name": "O Julgamento",
+                "word":"Sábio",
+                "url_carta": ""
+            },
+            {
+                "num": 21,
+                "name": "O Mundo",
+                "word":"Realizado",
+                "url_carta": ""
+            },
+            {
+                "num": 22,
+                "name": "O Louco",
+                "word":"Livre",
+                "url_carta": ""
+            }
+            
+        ];
+
     }
 
     
