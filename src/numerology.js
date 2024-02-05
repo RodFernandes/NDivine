@@ -29,12 +29,13 @@ class Numerology{
 
     run(){
         
-            this.showExternal();
+            this.showInternal();
             this.showExternal();
             const mva = this.showMVA();
             this.showIlka(mva);
             this.showNumMoney(mva);
             this.showWord(mva);
+            this.showMVAPic(mva);
     }
 
     #getInternal(){
@@ -46,7 +47,7 @@ class Numerology{
         const internalElem = document.getElementById("interno");
         if(internalElem){
             const internal = this.#getInternal();
-            internalElem.innerText = ` ${internal}`;
+            internalElem.innerText = ` ${internal} - `;
             this.showArcane(internal, "interno-arcane");
         }
     }
@@ -55,7 +56,7 @@ class Numerology{
         const month = this.#_DOB_month;
         const externo = document.getElementById("externo");
         if(externo){
-            externo.innerText = ` ${month}`;
+            externo.innerText = ` ${month} - `;
             this.showArcane(month, "externo-arcane");
         }
     }
@@ -117,19 +118,28 @@ class Numerology{
         const mva = this.#getMVA();
 
         const mvaElem = document.getElementById("mva");
+        const arcaneTopTxt = document.getElementById("img-arcane-top-txt");
 
         if(mvaElem){
-
-            mvaElem.innerText = ` ${mva}`;
+            mvaElem.innerText = ` ${mva} - `;
             this.showArcane(mva, "mva-arcane");
+        }
 
+        if(arcaneTopTxt){
+            this.showArcane(mva, "img-arcane-top-txt");
         }
 
         return mva;
 
     }
 
-    
+    showMVAPic(mva){
+        const elemt = document.getElementById("img-arcane-top");
+        console.log(elemt);
+        if(elemt && elemt != '' && elemt != 'undefined'){
+            elemt.src = `${this.#_ARCANES.find(a => a.num === parseInt(mva)).url_card}`;
+        }
+    }
 
     #getIlka(mva){
 
@@ -199,7 +209,7 @@ class Numerology{
     //         const elem = document.getElementById(elemID);
     //         console.log(elemID);
     //         if(elem && elem != '' && elem != 'undefined'){
-    //             elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
+    //             elem.innerText = `${a.find(a => a.num === parseInt(number)).name}`;
     //         }
     //     });
 
@@ -221,7 +231,7 @@ class Numerology{
         const elemt = document.getElementById("palavra");
         console.log(elemt);
         if(elemt && elemt != '' && elemt != 'undefined'){
-            elemt.innerText = ` - ${this.#_ARCANES.find(a => a.num === parseInt(mva)).word}`;
+            elemt.innerText = ` ${this.#_ARCANES.find(a => a.num === parseInt(mva)).word}`;
         }
     }
 
@@ -292,7 +302,7 @@ class Numerology{
         const elemt = document.getElementById(elem);
         console.log(elemt);
         if(elemt && elemt != '' && elemt != 'undefined'){
-            elemt.innerText = ` - ${this.#_ARCANES.find(a => a.num === parseInt(number)).name}`;
+            elemt.innerText = `${this.#_ARCANES.find(a => a.num === parseInt(number)).name}`;
         }
     }
 
@@ -304,139 +314,139 @@ class Numerology{
                 "name": "O Louco",
                 "word":"Livre",
                 "card_folder":"",
-                "url_carta": ""
+                "url_card": "img/cards/o-louco.jpg"
             },
             {
                 "num": 1,
                 "name": "O Mago",
                 "word":"Empreendedor",
-                "url_carta": ""
+                "url_card": "img/cards/o-mago.jpg"
             },
             {
                 "num": 2,
                 "name": "A Sacerdotisa",
                 "word":"Intuitivo",
-                "url_carta": ""
+                "url_card": "img/cards/a-sacerdotisa.jpg"
             },
             {
                 "num": 3,
                 "name": "A Imperatriz",
                 "word":"Comunicador",
-                "url_carta": ""
+                "url_card": "img/cards/a-imperatriz.jpg"
             },
             {
                 "num": 4,
                 "name": "O Imperador",
                 "word":"Lider",
-                "url_carta": "img/cards/o-imperador"
+                "url_card": "img/cards/o-imperador"
             },
             {
                 "num": 5,
                 "name": "O Papa",
                 "word":"Religioso",
-                "url_carta": ""
+                "url_card": "img/cards/o-papa.jpg"
             },
             {
                 "num": 6,
                 "name": "Os Enamorados",
                 "word":"Familiar",
-                "url_carta": ""
+                "url_card": "img/cards/os-enamorados.jpg"
             },
             {
                 "num": 7,
                 "name": "O Carro",
                 "word":"Conquistador",
-                "url_carta": ""
+                "url_card": "img/cards/o-carro.jpg"
             },
             {
                 "num": 8,
                 "name": "A Justiça",
                 "word":"Justo",
-                "url_carta": ""
+                "url_card": "img/cards/a-justica.jpg"
             },
             {
                 "num": 9,
                 "name": "O Eremita",
                 "word":"Paciente",
-                "url_carta": ""
+                "url_card": "img/cards/o-eremita.jpg"
             },
             {
                 "num": 10,
                 "name": "A Roda da Fortuna",
                 "word":"Fiel",
-                "url_carta": ""
+                "url_card": "img/cards/a-roda-da-fortuna.jpg"
             },
             {
                 "num": 11,
                 "name": "A Força",
                 "word":"Inteligente",
-                "url_carta": ""
+                "url_card": "img/cards/a-forca.jpg"
             },
             {
                 "num": 12,
                 "name": "O Enforcado",
                 "word":"Analista",
-                "url_carta": ""
+                "url_card": "img/cards/o-enforcado.jpg"
             },
             {
                 "num": 13,
                 "name": "A Morte",
                 "word":"Certo",
-                "url_carta": ""
+                "url_card": "img/cards/a-morte.jpg"
             },
             {
                 "num": 14,
                 "name": "A Temperança",
                 "word":"Equilibrado",
-                "url_carta": ""
+                "url_card": "img/cards/a-temperanca.jpg"
             },
             {
                 "num": 15,
                 "name": "O Diabo",
                 "word":"Prazeroso",
-                "url_carta": ""
+                "url_card": "img/cards/o-diabo.jpg"
             },
             {
                 "num": 16,
                 "name": "A Torre",
                 "word":"Organizado",
-                "url_carta": ""
+                "url_card": "img/cards/a-torre.jpg"
             },
             {
                 "num": 17,
                 "name": "A Estrela",
                 "word":"Positivo",
-                "url_carta": ""
+                "url_card": "img/cards/a-estrela.jpg"
             },
             {
                 "num": 18,
                 "name": "A Lua",
                 "word":"Místico",
-                "url_carta": ""
+                "url_card": "img/cards/a-lua.jpg"
             },
             {
                 "num": 19,
                 "name": "O Sol",
                 "word":"Amoroso",
-                "url_carta": ""
+                "url_card": "img/cards/o-sol.jpg"
             },
             {
                 "num": 20,
                 "name": "O Julgamento",
                 "word":"Sábio",
-                "url_carta": ""
+                "url_card": "img/cards/o-julgamento.jpg"
             },
             {
                 "num": 21,
                 "name": "O Mundo",
                 "word":"Realizado",
-                "url_carta": ""
+                "url_card": "img/cards/o-mundo.jpg"
             },
             {
                 "num": 22,
                 "name": "O Louco",
                 "word":"Livre",
-                "url_carta": ""
+                "url_card": "img/cards/o-louco.jpg"
             }
             
         ];

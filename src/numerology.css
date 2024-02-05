@@ -1,0 +1,68 @@
+
+.container{
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.row{
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-flex: 0;
+    flex: 0 1 auto;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.col-xs-12{
+    flex-basis: 100%;
+    max-width: 100%;
+
+    box-sizing: border-box;
+    -webkit-box-flex: 0;
+    flex: 0 0 auto;
+    
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+    font-style: italic;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 1rem;
+  }
+
+.tarot-card-top{
+   
+    grid-row-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: auto;
+    grid-column-gap: 0;
+    text-align: center;
+    
+}
+
+.img-arcane-top
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 5px;
+    max-width: 100%;
+    height: auto;
+ 
+}
