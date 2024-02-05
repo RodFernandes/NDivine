@@ -118,6 +118,8 @@ class Numerology{
 
     }
 
+    
+
     #getIlka(mva){
 
         const valueDays = this.#splitNumbers(this.#_DOB_day, 22);
@@ -186,6 +188,18 @@ class Numerology{
             console.log(elemID);
             if(elem && elem != '' && elem != 'undefined'){
                 elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
+            }
+        });
+
+    }
+
+    showWord(mva){
+
+        this.#_ARCANES.then((a) => {
+            const elem = document.getElementById("palavra");
+            console.log(elem);
+            if(elem && elem != '' && elem != 'undefined'){
+                elem.innerText = ` - ${a.find(a => a.num === parseInt(mva)).word}`;
             }
         });
 

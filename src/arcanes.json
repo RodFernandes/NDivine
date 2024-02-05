@@ -2,7 +2,7 @@
     {
         "num": 0,
         "name": "O Louco",
-        "word":"",
+        "word":"Livre",
         "card_folder":"",
         "url_carta": ""
     },
@@ -14,113 +14,128 @@
     },
     {
         "num": 2,
-        "name": "",
-        "word":"",
+        "name": "A Sacerdotisa",
+        "word":"Intuitivo",
         "url_carta": ""
     },
     {
         "num": 3,
         "name": "A Imperatriz",
-        "word":"",
+        "word":"Comunicador",
         "url_carta": ""
     },
     {
         "num": 4,
         "name": "O Imperador",
-        "word":"",
+        "word":"Lider",
         "url_carta": "img/cards/o-imperador"
     },
     {
         "num": 5,
-        "name": "",
-        "word":"",
+        "name": "O Papa",
+        "word":"Religioso",
         "url_carta": ""
     },
     {
         "num": 6,
-        "name": "",
-        "word":"",
+        "name": "Os Enamorados",
+        "word":"Familiar",
         "url_carta": ""
     },
     {
         "num": 7,
         "name": "O Carro",
-        "word":"",
+        "word":"Conquistador",
         "url_carta": ""
     },
     {
         "num": 8,
         "name": "A Justiça",
+        "word":"Justo",
         "url_carta": ""
     },
     {
         "num": 9,
         "name": "O Eremita",
+        "word":"Paciente",
         "url_carta": ""
     },
     {
         "num": 10,
         "name": "A Roda da Fortuna",
+        "word":"Fiel",
         "url_carta": ""
     },
     {
         "num": 11,
         "name": "A Força",
+        "word":"Inteligente",
         "url_carta": ""
     },
     {
         "num": 12,
-        "name": "",
+        "name": "O Enforcado",
+        "word":"Analista",
         "url_carta": ""
     },
     {
         "num": 13,
-        "name": "",
+        "name": "A Morte",
+        "word":"Certo",
         "url_carta": ""
     },
     {
         "num": 14,
-        "name": "",
+        "name": "A Temperança",
+        "word":"Equilibrado",
         "url_carta": ""
     },
     {
         "num": 15,
-        "name": "",
+        "name": "O Diabo",
+        "word":"Prazeroso",
         "url_carta": ""
     },
     {
         "num": 16,
         "name": "A Torre",
+        "word":"Organizado",
         "url_carta": ""
     },
     {
         "num": 17,
         "name": "A Estrela",
+        "word":"Positivo",
         "url_carta": ""
     },
     {
         "num": 18,
-        "name": "",
+        "name": "A Lua",
+        "word":"Místico",
         "url_carta": ""
     },
     {
         "num": 19,
-        "name": "",
+        "name": "O Sol",
+        "word":"Amoroso",
         "url_carta": ""
     },
     {
         "num": 20,
-        "name": "",
+        "name": "O Julgamento",
+        "word":"Sábio",
         "url_carta": ""
     },
     {
         "num": 21,
-        "name": "",
+        "name": "O Mundo",
+        "word":"Realizado",
         "url_carta": ""
     },
     {
         "num": 22,
         "name": "O Louco",
+        "word":"Livre",
         "url_carta": ""
     }
     
