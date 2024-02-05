@@ -169,7 +169,8 @@ class Numerology{
 
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        headers.append("Access-Control-Allow-Origin", "*");
+       // headers.append("Access-Control-Allow-Origin", "*");
+        headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         //headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io/NDivine/");
 
         const response = await fetch(request, {method:'POST', headers: headers});
