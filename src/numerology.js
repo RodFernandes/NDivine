@@ -164,36 +164,36 @@ class Numerology{
 
     }
 
-    async #getArcanesAsync(){
-        const requestURL = "src/arcanes.json";
-        const request = new Request(requestURL);
+    // async #getArcanesAsync(){
+    //     const requestURL = "src/arcanes.json";
+    //     const request = new Request(requestURL);
 
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append("Access-Control-Allow-Origin", "*");
-        headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-        //headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io/NDivine/");
+    //     const headers = new Headers();
+    //     headers.append('Content-Type', 'application/json');
+    //     headers.append("Access-Control-Allow-Origin", "*");
+    //     headers.append("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    //     //headers.append("Access-Control-Allow-Origin", "https://rodfernandes.github.io/NDivine/");
 
-        const response = await fetch(request, {method:'POST', mode: "cors", headers: headers});
-        const arcaneFile = await response.json();
+    //     const response = await fetch(request, {method:'POST', mode: "cors", headers: headers});
+    //     const arcaneFile = await response.json();
 
-        //console.log(arcaneFile);
+    //     //console.log(arcaneFile);
 
-        return arcaneFile;
-    }
+    //     return arcaneFile;
+    // }
 
-    showArcaneAsync(number, elemID){
-        //const arcane = arcanes.find(({num}) => num === parseInt(number) );
+    // showArcaneAsync(number, elemID){
+    //     //const arcane = arcanes.find(({num}) => num === parseInt(number) );
        
-        this.#_ARCANES.then((a) => {
-            const elem = document.getElementById(elemID);
-            console.log(elemID);
-            if(elem && elem != '' && elem != 'undefined'){
-                elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
-            }
-        });
+    //     this.#_ARCANES.then((a) => {
+    //         const elem = document.getElementById(elemID);
+    //         console.log(elemID);
+    //         if(elem && elem != '' && elem != 'undefined'){
+    //             elem.innerText = ` - ${a.find(a => a.num === parseInt(number)).name}`;
+    //         }
+    //     });
 
-    }
+    // }
 
     // showWordAsync(mva){
 
