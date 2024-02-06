@@ -1,4 +1,6 @@
 
+var _FlipImgDegrees = 0;
+
 function setTopPositionByElement(el, animateSpeed = 550){
     const element = document.getElementById("el");
     const top = getOffSetTopPage(element) - 100;

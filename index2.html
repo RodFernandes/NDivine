@@ -38,7 +38,8 @@
                 <div class="col">
                     <form id="formLucky">
 
-                        <button type="submit" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseDayCard" aria-expanded="false" aria-controls="collapseDayCard">Sorte</button>
+                        <!-- <button type="submit" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseDayCard" aria-expanded="false" aria-controls="collapseDayCard">Sorte</button> -->
+                        <button type="submit" class="btn btn-secondary">Sorte</button>
                        
                     </form>
                 </div>                
@@ -67,14 +68,14 @@
                 <h3 id="img-arcane-top-txt" class="img-arcane-top-txt"></h3>
                 <div class="tarot-card-top">
                     <figure>
-                        <img src="img/cards/back/back_card-445.jpeg" class="img-arcane-top" id="img-arcane-top"/>
+                        <img src="img/cards/back_card_1.avif" class="img-arcane-top" id="img-arcane-top"/>
                     </figure>
                 </div>
             </div>
             
             <!-- MVA Result -->
             <div class="collapse" id="collapseALL">
-                
+
                 <div class="row">
                     <div class="col">
                         <strong>Interno:</strong>
@@ -132,4 +133,30 @@
         </div>
 
     </body>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#formLucky").submit(function(){
+
+        const DOBLucky = {
+            value:"04/01/1982"
+        };
+        const numlogy = new Numerology(DOBLucky);
+        numlogy.runLucky();
+
+        // const collapseAll = document.getElementById("collapseALL");
+        // new bootstrap.Collapse(collapseAll);
+      
+
+        event.preventDefault();
+    });
+
+
+});
+
+</script>
+
+
 </html>

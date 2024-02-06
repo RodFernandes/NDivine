@@ -48,14 +48,6 @@ img {
   }
 
 .tarot-card-top{
-   
-    /* grid-row-gap: 10px;
-    display: grid;
-    grid-template-columns: repeat(1,1fr);
-    grid-template-rows: auto;
-    grid-column-gap: 0;
-    text-align: center;
-    height: auto; */
 
 
     display: flex;

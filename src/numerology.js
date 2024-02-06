@@ -6,6 +6,7 @@ class Numerology{
     #_DOB_month;
     #_DOB_year;
     #_ARCANES;
+    
 
     constructor(dob){
         //constructor
@@ -114,9 +115,9 @@ class Numerology{
 
         const sumOfSplittedDate = col1 + col2 + col3 + col4;
 
-        console.log(daySplit, monthSplit);
-        console.table(col1,col2, col3, col4);
-        console.log(sumOfSplittedDate);
+        // console.log(daySplit, monthSplit);
+        // console.table(col1,col2, col3, col4);
+        // console.log(sumOfSplittedDate);
         
         const mva = this.#splitNumbers(sumOfSplittedDate,22);
 
@@ -146,13 +147,14 @@ class Numerology{
 
     showMVAPic(mva){
         const elemt = document.getElementById("img-arcane-top");
-        console.log(elemt);
+        //console.log(elemt);
 
         if(elemt && elemt != '' && elemt != 'undefined'){
-            
-            elemt.style.transform = "rotatey(" + 180 + "deg)";
-            elemt.style.transitionDuration = "0.8s"
+            _FlipImgDegrees += 180;
+            elemt.style.transform = "rotatey(" + _FlipImgDegrees + "deg)";
+            elemt.style.transitionDuration = "1.0s"
             elemt.style.transformStyle = "preserve-3d";
+            
             elemt.src = `${this.#_ARCANES.find(a => a.num === parseInt(mva)).url_card}`;
         }
     }
@@ -245,7 +247,7 @@ class Numerology{
 
     showWord(mva){
         const elemt = document.getElementById("palavra");
-        console.log(elemt);
+        //console.log(elemt);
         if(elemt && elemt != '' && elemt != 'undefined'){
             elemt.innerText = ` ${this.#_ARCANES.find(a => a.num === parseInt(mva)).word}`;
         }
@@ -283,7 +285,7 @@ class Numerology{
     #formatDateDDMMYYYToYYYMMDD(value){
 
         if(value == '' || value == ''){
-            console.log(`formatDateDDMMYYYToYYYMMDD: ${value}`);
+            //console.log(`formatDateDDMMYYYToYYYMMDD: ${value}`);
             return new Date();
         }
 
@@ -316,7 +318,7 @@ class Numerology{
 
     showArcane(number, elem){
         const elemt = document.getElementById(elem);
-        console.log(elemt);
+        //console.log(elemt);
         if(elemt && elemt != '' && elemt != 'undefined'){
             elemt.innerText = `${this.#_ARCANES.find(a => a.num === parseInt(number)).name}`;
         }
