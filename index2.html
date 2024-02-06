@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerologia Divina</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="src/helper.js?v=1"></script>
+    <!-- <script src="src/numerology.js?v=4"></script> -->
+
+    <link rel="stylesheet" href="src/numerology2.css">
+
+    <script id="numerologyJS"></script>
+    <script>
+        var url="src/numerology.js?no-cache=";
+        const test = document.getElementById('numerologyJS').src = url + Date.now();
+    </script>
+
+
+</head>
+    <body>
+        
+        <div class="container text-center">
+
+            <div class="row">
+                <h2>Num Divine</h2>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        MVA
+                      </a>
+                </div>
+                <div class="col">
+                    <form id="formLucky">
+
+                        <button type="submit" class="btn btn-secondary" data-bs-toggle="collapse" data-bs-target="#collapseDayCard" aria-expanded="false" aria-controls="collapseDayCard">Sorte</button>
+                       
+                    </form>
+                </div>                
+            </div>
+
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    
+                        <form id="formMVA" class="formMVA">
+                            
+                            <div class="mb-3">
+                                <label for="data-nasc" class="form-label">Data de Nascimento:</label>
+                                <input type="tel" name="data-nasc" id="data-nasc" placeholder="DD/MM/AAAA" maxlength="10" size="10" required/> 
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#collapseALL" aria-expanded="false" aria-controls="collapseALL">Ver</button>
+                        
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- flip card  -->
+                <br />
+                <h3 id="img-arcane-top-txt" class="img-arcane-top-txt"></h3>
+                <div class="tarot-card-top">
+                    <figure>
+                        <img src="img/cards/back/back_card-445.jpeg" class="img-arcane-top" id="img-arcane-top"/>
+                    </figure>
+                </div>
+            </div>
+            
+            <!-- MVA Result -->
+            <div class="row">
+                <div class="col">
+                    <strong>Interno:</strong>
+                </div>
+                <div class="col">
+                    <i id="interno"></i><i id="interno-arcane"></i>
+                </div>
+            </div>
+            <div class="row">
+                btn
+            </div>
+
+        </div>
+
+    </body>
+</html>
