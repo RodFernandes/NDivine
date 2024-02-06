@@ -21,6 +21,10 @@
     margin-left: -8px;
 }
 
+.formMVA{
+  border: 5px black;
+}
+
 .col-xs-12{
     flex-basis: 100%;
     max-width: 100%;
@@ -77,6 +81,7 @@ img {
     align-items: center;
     text-align: center;
 }
+
 
 /* .flip-card {
     background-color: transparent;

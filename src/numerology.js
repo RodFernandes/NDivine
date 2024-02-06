@@ -38,6 +38,10 @@ class Numerology{
             this.showMVAPic(mva);
     }
 
+    runLucky(){
+        this.showLucky();
+    }
+
     #getInternal(){
         const internal = this.#splitNumbers(this.#_DOB_day,22);
         return internal;
@@ -59,6 +63,13 @@ class Numerology{
             externo.innerText = ` ${month} - `;
             this.showArcane(month, "externo-arcane");
         }
+    }
+
+    showLucky(){
+        const rnd = Math.floor(Math.random() * 23);
+        this.showArcane(rnd, "img-arcane-top-txt");
+        this.showMVAPic(rnd);
+
     }
 
     #getMVA(){
@@ -343,7 +354,7 @@ class Numerology{
                 "num": 4,
                 "name": "O Imperador",
                 "word":"Lider",
-                "url_card": "img/cards/o-imperador"
+                "url_card": "img/cards/o-imperador.jpg"
             },
             {
                 "num": 5,
